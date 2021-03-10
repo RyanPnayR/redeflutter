@@ -24,10 +24,14 @@ class RedeappLocalizations {
 
   static final Map<String, Map<String, String>> _localizedValues = {
     "en": {
+      "username": "USERNAME",
+      "password": "PASSWORD",
+      "i_forgot": "I forgot my ...",
+      "remember_username": "Remember Username",
       "used_redeapp": "I've used Rede e App before",
       "new_redeapp": "I've new to Rede e App",
       "log_out": "Log out",
-      "log_in": "Log in",
+      "log_in": "SIGN IN",
       "hello_name": "Hello {name}!",
       "login_fail_user_not_found": "Login failed. No such user exists.",
       "login_fail": "Login failed. Code: '{code}'",
@@ -385,6 +389,10 @@ class RedeappLocalizations {
   // Redeapp
   String get newRedeapp => _localizedValue("new_redeapp");
   String get usedRedeapp => _localizedValue("used_redeapp");
+  String get rememberUsername => _localizedValue("remember_username");
+  String get iForgot => _localizedValue("i_forgot");
+  String get password => _localizedValue("password");
+  String get username => _localizedValue("username");
 
   /// Calendar
 
