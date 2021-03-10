@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:redeflutter/localization.dart';
 import 'package:redeflutter/presentation/login/loginscreen.dart';
-import 'package:redeflutter/presentation/start/login_button.dart';
-import 'package:redeflutter/redeapp.dart';
-import 'package:redeflutter/routes.dart';
 
+import '../../test_utils/functions.dart';
 import '../../test_utils/mock_navigator_observer.dart';
 
 void main() {
@@ -16,17 +13,10 @@ void main() {
       mockObserver = MockNavigatorObserver();
     });
 
-    Widget getApp() {
-      return MaterialApp(
-        home: RedeApp(),
-        navigatorObservers: [mockObserver],
-      );
-    }
-
     testWidgets(
         'Given when user clicks on login button then it navigates them to login screen',
         (WidgetTester tester) async {
-      await tester.pumpWidget(getApp());
+      await tester.pumpWidget(getApp[mockObserver])());
       final testButton = find.byKey(Key("LoginButton"));
       expect(testButton, findsOneWidget);
 
