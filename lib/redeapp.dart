@@ -40,7 +40,9 @@ class _RedeAppState extends State<RedeApp> {
         Routes.home: (context) {
           return StartScreen();
         },
-        Routes.singup: (context) {},
+        Routes.singup: (context) {
+          return LoginScreen();
+        },
         Routes.login: (context) {
           return LoginScreen();
         },
