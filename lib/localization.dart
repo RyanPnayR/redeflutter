@@ -24,6 +24,7 @@ class RedeappLocalizations {
 
   static final Map<String, Map<String, String>> _localizedValues = {
     "en": {
+      "forgot_password": "Forgot password?",
       "username": "USERNAME",
       "password": "PASSWORD",
       "i_forgot": "I forgot my ...",
@@ -392,6 +393,8 @@ class RedeappLocalizations {
   String get rememberUsername => _localizedValue("remember_username");
   String get iForgot => _localizedValue("i_forgot");
   String get password => _localizedValue("password");
+  String get forgotPassword => _localizedValue("forgot_password");
+
   String get username => _localizedValue("username");
 
   /// Calendar

@@ -12,7 +12,7 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressedCallback,
-      style: AppTheme.SigninButton,
+      style: AppTheme.signinButton,
       child: Container(
           height: 50.0,
           alignment: Alignment.center,

@@ -53,13 +53,14 @@ class AppTheme {
   static final invisibleDividerColor = HexColor("#686667");
   static final dividerColor = HexColor("#767676");
   static final blueFont = HexColor("#7491BC");
-  static final whiteGrey = HexColor("#ecf0f1");
+  static final whiteGrey = HexColor("#cecfcf");
   static final purple = HexColor("#9564b8");
   static final emergencyYellow = HexColor("#f0da68");
   static final green = HexColor("#64b873");
   static final virusOrange = HexColor("#e68454");
   static final networkSubitem = HexColor("#999999");
   static final networkSwitcherBackground = HexColor("#ededee");
+  static final loginBackgroundBoxGray = HexColor("#f4f5f5");
 
   static ThemeData get theme {
     return ThemeData.light().copyWith(
@@ -86,7 +87,7 @@ class AppTheme {
     return TextStyle(color: redeRed);
   }
 
-  static ButtonStyle get SigninButton {
+  static ButtonStyle get signinButton {
     return ElevatedButton.styleFrom().copyWith(
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
         (Set<MaterialState> states) {
@@ -97,8 +98,19 @@ class AppTheme {
     );
   }
 
-  static TextStyle get SigninButtonText {
+  static TextStyle get signinButtonText {
     return TextStyle(color: redeRed);
+  }
+
+  static TextStyle get forgotPasswordButtonText {
+    return TextStyle(color: mediumGray, fontSize: 12);
+  }
+
+  static TextStyle get signupButtonLinkText {
+    return TextStyle(
+      color: black,
+      fontWeight: FontWeight.bold,
+    );
   }
 
   /// Calendar

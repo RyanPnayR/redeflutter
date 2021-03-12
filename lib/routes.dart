@@ -1,8 +1,8 @@
 class Routes {
   static final home = "/";
   static final start = "/start";
-  static final login = "/start/login";
-  static final singup = "/start/singup";
+  static final login = "/login";
+  static final singup = "/singup";
   static final channelNew = "/channel/new";
   static final channelInvite = "/channel/invite";
   static final image = "/image";

@@ -4,6 +4,7 @@ import 'package:redeflutter/presentation/login/loginscreen.dart';
 import 'package:redeflutter/presentation/start/startscreen.dart';
 import 'package:redeflutter/routes.dart';
 import 'package:redeflutter/theme.dart';
+import 'package:redeflutter/util/responsive.dart';
 
 import 'localization.dart';
 
@@ -45,9 +46,6 @@ class _RedeAppState extends State<RedeApp> {
         },
         Routes.login: (context) {
           return LoginScreen();
-        },
-        Routes.start: (context) {
-          return StartScreen();
         },
       },
     );

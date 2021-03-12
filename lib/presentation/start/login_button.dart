@@ -16,7 +16,7 @@ class LoginButton extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, Routes.login);
         },
-        style: AppTheme.SigninButton,
+        style: AppTheme.signinButton,
         child: Container(
           height: 50.0,
           alignment: Alignment.center,
