@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:redeflutter/presentation/conversations/conversationscreen.dart';
 import 'package:redeflutter/presentation/login/loginscreen.dart';
 import 'package:redeflutter/presentation/start/startscreen.dart';
 import 'package:redeflutter/routes.dart';
@@ -47,6 +48,9 @@ class _RedeAppState extends State<RedeApp> {
         Routes.login: (context) {
           return LoginScreen();
         },
+        Routes.messages: (context) {
+          return ConversationScreen();
+        }
       },
     );
   }

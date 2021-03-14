@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:redeflutter/data/app_model.dart';
+import 'package:redeflutter/locator.dart';
+import 'package:redeflutter/model/user.dart';
+import 'package:redeflutter/routes.dart';
+import 'package:redeflutter/services/auth_service.dart';
 import 'package:redeflutter/util/responsive.dart';
 
 import '../../localization.dart';
@@ -19,6 +24,8 @@ class _LoginFormState extends State<LoginForm> {
   final _userTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
   var _rememberUsernameValue = false;
+  var authService = locator<AuthService>();
+  var appModel = locator<AppModel>();
 
   @override
   void dispose() {
@@ -30,23 +37,20 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final submitCallback = () {
+    final submitCallback = () async {
       if (_formKey.currentState.validate()) {
-        // final loginAction = LogIn(
-        //     email: _userTextEditingController.text,
-        //     password: _passwordTextEditingController.text);
+        JwtToken token = await authService.signIn(
+            _userTextEditingController.text,
+            _passwordTextEditingController.text);
 
-        // StoreProvider.of<AppState>(context).dispatch(loginAction);
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text("Logging you in...")));
 
-        // loginAction.completer.future.catchError((error) {
-        //   Scaffold.of(context).hideCurrentSnackBar();
-        //   Logger.w(error.code.toString());
-        //   Scaffold.of(context).showSnackBar(SnackBar(
-        //       content: Text(RedeappLocalizations.of(context)
-        //           .authErrorMessage(error.code.toString()))));
-        // });
+        Account account = await authService.getAccountInfo(token);
+        appModel.account = account;
+        appModel.token = token;
+
+        Navigator.pushReplacementNamed(context, Routes.messages);
       }
     };
 
