@@ -39,16 +39,14 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final submitCallback = () async {
       if (_formKey.currentState.validate()) {
-        JwtToken token = await authService.signIn(
-            _userTextEditingController.text,
+        String token = await authService.signIn(_userTextEditingController.text,
             _passwordTextEditingController.text);
 
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text("Logging you in...")));
-
-        Account account = await authService.getAccountInfo(token);
-        appModel.account = account;
-        appModel.token = token;
+        // JwtToken tkn = JwtToken({"token": token});
+        // Account account = await authService.getAccountInfo(token);
+        // appModel.account = account;
 
         Navigator.pushReplacementNamed(context, Routes.messages);
       }

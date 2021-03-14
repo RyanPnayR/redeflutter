@@ -10,18 +10,14 @@ class AuthPaths {
   static const PATH_NETWORKS = "networks";
 
   static String loginJWTPath() {
-    return "/$PATH_API/$PATH_AUTH/$PATH_V1/$PATH_JWT/$PATH_LOGIN";
+    return "/$PATH_API/$PATH_AUTH/$PATH_V1/$PATH_JWT/$PATH_LOGIN/";
   }
 
-  static Uri networkAccountsPath(String accountId) {
-    return Uri(
-        path:
-            "/$PATH_API/$PATH_NETWORKS/$PATH_V1/$PATH_ACCOUNTS/$accountId/$PATH_NETWORKS");
+  static String networkAccountsPath(String accountId) {
+    return "/$PATH_API/$PATH_NETWORKS/$PATH_V1/$PATH_ACCOUNTS/$accountId/$PATH_NETWORKS";
   }
 
-  static Uri accountPath() {
-    return Uri(
-        path:
-            "https://qa.redeapp.com/$PATH_API/$PATH_ACCOUNTS/$PATH_V1/$PATH_ACCOUNTS");
+  static String accountPath() {
+    return "https://qa.redeapp.com/$PATH_API/$PATH_ACCOUNTS/$PATH_V1/$PATH_ACCOUNTS";
   }
 }
