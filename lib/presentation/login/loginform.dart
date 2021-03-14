@@ -44,9 +44,9 @@ class _LoginFormState extends State<LoginForm> {
 
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text("Logging you in...")));
-        // JwtToken tkn = JwtToken({"token": token});
-        // Account account = await authService.getAccountInfo(token);
-        // appModel.account = account;
+        JwtToken tkn = JwtToken(token);
+        Account account = await authService.getAccountInfo(tkn);
+        appModel.account = account;
 
         Navigator.pushReplacementNamed(context, Routes.messages);
       }

@@ -4,13 +4,13 @@ class AuthPaths {
   static const PATH_API = "api";
   static const PATH_AUTH = "auth";
   static const PATH_V1 = "v1";
-  static const PATH_JWT = "jwt";
+  static const PATH_BEARER = "bearer";
   static const PATH_LOGIN = "login";
   static const PATH_ACCOUNTS = "accounts";
   static const PATH_NETWORKS = "networks";
 
   static String loginJWTPath() {
-    return "/$PATH_API/$PATH_AUTH/$PATH_V1/$PATH_JWT/$PATH_LOGIN/";
+    return "/$PATH_API/$PATH_AUTH/$PATH_V1/$PATH_BEARER/$PATH_LOGIN/";
   }
 
   static String networkAccountsPath(String accountId) {
