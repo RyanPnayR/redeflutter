@@ -4,6 +4,7 @@ import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/user.dart';
 import 'package:redeflutter/services/paths/auth_paths.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   var dio = locator.get<Dio>();
@@ -13,6 +14,8 @@ class AuthService {
         data: {"username": email, "password": password});
     AppModel am = locator.get<AppModel>();
     am.aToken = jwt.data["token"];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("token", am.aToken);
     return jwt.data["token"];
   }
 

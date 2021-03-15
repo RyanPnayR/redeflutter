@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:redeflutter/data/app_model.dart';
+import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/presentation/conversations/conversationscreen.dart';
 import 'package:redeflutter/presentation/login/loginscreen.dart';
 import 'package:redeflutter/presentation/start/startscreen.dart';
 import 'package:redeflutter/routes.dart';
 import 'package:redeflutter/theme.dart';
-import 'package:redeflutter/util/responsive.dart';
 
 import 'localization.dart';
 
 class RedeApp extends StatefulWidget {
-  const RedeApp({
-    Key key,
-  }) : super(key: key);
+  final String initialRoute;
+  const RedeApp({Key key, this.initialRoute}) : super(key: key);
 
   @override
   _RedeAppState createState() => _RedeAppState();
@@ -30,6 +30,7 @@ class _RedeAppState extends State<RedeApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: localizationsDelegates,
+      initialRoute: widget.initialRoute,
       supportedLocales: [
         const Locale("de", "DE"),
         const Locale("en", "EN"),
