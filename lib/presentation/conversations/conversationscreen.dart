@@ -1,6 +1,7 @@
 import 'package:redeflutter/data/app_model.dart';
 import "package:redeflutter/localization.dart";
 import 'package:redeflutter/presentation/conversations/conversation_desktop_screen.dart';
+import 'package:redeflutter/presentation/conversations/conversation_mobile_screen.dart';
 import 'package:redeflutter/services/auth_service.dart';
 import 'package:redeflutter/theme.dart';
 import "package:flutter/material.dart";
@@ -20,6 +21,8 @@ class ConversationScreen extends StatefulWidget {
 class _ConversationScreenState extends State<ConversationScreen> {
   var authService = locator<AuthService>();
   var appModel = locator<AppModel>();
+  GlobalKey<ScaffoldState> _conversationKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -30,46 +33,10 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppTheme.whiteGrey,
-        bottomNavigationBar:
-            !Responsive.isMobile(context) ? LoginFooter() : SizedBox.shrink(),
-        appBar: Responsive.isMobile(context)
-            ? AppBar(
-                backgroundColor: AppTheme.lightGray,
-                elevation: 0,
-                centerTitle: true,
-                title: Text(RedeappLocalizations.of(context).logIn,
-                    style: TextStyle(color: Colors.black)),
-              )
-            : AppBar(
-                toolbarHeight: 40,
-                backgroundColor: Colors.white,
-                automaticallyImplyLeading: false,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      "assets/graphics/logo-redeapp.png",
-                      height: 30,
-                    ),
-                    Text(
-                      'Messages',
-                      style: AppTheme.messageTextStyle,
-                    ),
-                    Row(
-                      children: [
-                        TextButton(onPressed: () {}, child: Text('Help')),
-                        TextButton(onPressed: () {}, child: Text('Sign Out')),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-        body: Responsive(
-          desktop: DesktopConversationScreen(),
-          mobile: DesktopConversationScreen(),
-          tablet: DesktopConversationScreen(),
-        ));
+    return Responsive(
+      desktop: DesktopConversationScreen(),
+      mobile: MobileConversationScreen(),
+      tablet: MobileConversationScreen(),
+    );
   }
 }

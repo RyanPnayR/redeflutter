@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
@@ -19,9 +22,10 @@ void setupLocator() {
     // We use a new Dio(to avoid dead lock) instance to request token.
     //Set the cookie to headers
     var token = locator.get<AppModel>().aToken;
-    if (token != "") {
+    if (token != null && token != "") {
       options.headers["Authorization"] = "Bearer $token";
     }
+    options.headers["Access-Control-Allow-Origin"] = "*";
     dio.interceptors.requestLock.unlock();
     return options; //continue
   }));

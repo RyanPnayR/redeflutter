@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:redeflutter/presentation/common/sidebar/network_switcher.dart';
 import 'package:redeflutter/util/login_footer.dart';
 
 import '../../../theme.dart';
@@ -15,9 +16,7 @@ class Sidebar extends StatelessWidget {
         // Now there is no error if our width is less then 1340
         Expanded(
           flex: 3,
-          child: Container(
-            color: AppTheme.networkSwitcherGray,
-          ),
+          child: NetworkSwitcher(),
         ),
         Expanded(
           flex: 8,

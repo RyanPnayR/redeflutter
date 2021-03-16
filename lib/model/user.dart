@@ -69,7 +69,7 @@ class Account {
         name = json['name'],
         initials = json['initials'],
         avatarObjectKey = json['avatar_object_key'],
-        avatarUrl = json['avatarUrl'],
+        avatarUrl = json['avatar_url'],
         backgroundObjectKey = json['background_object_key'],
         backgroundUrl = json['background_url'],
         locale = json['locale'],
