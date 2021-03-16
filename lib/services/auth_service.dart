@@ -8,20 +8,37 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   var dio = locator.get<Dio>();
+  var appModel = locator<AppModel>();
 
   Future<String> signIn(String email, String password) async {
-    final jwt = await dio.post(AuthPaths.loginJWTPath(),
+    final tokenResp = await dio.post(AuthPaths.loginJWTPath(),
         data: {"username": email, "password": password});
-    AppModel am = locator.get<AppModel>();
-    am.aToken = jwt.data["token"];
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("token", am.aToken);
-    return jwt.data["token"];
+    return tokenResp.data["token"];
   }
 
-  Future<Account> getAccountInfo(JwtToken token) async {
-    if (token == null) return Future.value(null);
+  Future<Account> getAccountInfo() async {
     Response resp = await dio.get(AuthPaths.accountPath());
     return Account.fromJson(resp.data['results'][0]);
+  }
+
+  Future<List<NetworkAccount>> getNetworks() async {
+    Response resp =
+        await dio.get(AuthPaths.networkAccountsPath(appModel.account.id));
+
+    List<NetworkAccount> networks = [];
+
+    resp.data.forEach((network) {
+      networks.add(NetworkAccount.fromJson(network));
+    });
+    return networks;
+  }
+
+  Future<void> loadAccountAndNetworks() async {
+    Account account = await this.getAccountInfo();
+    appModel.account = account;
+
+    List<NetworkAccount> networks = await this.getNetworks();
+    appModel.networks = networks;
+    appModel.selectedNetwork = networks[0];
   }
 }

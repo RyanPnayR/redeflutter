@@ -18,6 +18,6 @@ class AuthPaths {
   }
 
   static String accountPath() {
-    return "https://qa.redeapp.com/$PATH_API/$PATH_ACCOUNTS/$PATH_V1/$PATH_ACCOUNTS";
+    return "/$PATH_API/$PATH_ACCOUNTS/$PATH_V1/$PATH_ACCOUNTS";
   }
 }

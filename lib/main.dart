@@ -1,3 +1,4 @@
+import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/redeapp.dart';
 import 'package:redeflutter/routes.dart';
@@ -11,6 +12,7 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   setupLocator();
+  locator.get<AppModel>().aToken = prefs.get('token');
   runApp(RedeApp(
     initialRoute: prefs.get('token') != "" ? Routes.messages : Routes.home,
   ));

@@ -60,29 +60,29 @@ class Account {
   );
   Account.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        createdAt = json['createdAt'],
-        updatedAt = json['updatedAt'],
-        userId = json['userId'],
+        createdAt = json['created_at'],
+        updatedAt = json['updated_at'],
+        userId = json['user_id'],
         settings = Settings.fromJson(json['settings']),
-        firstName = json['firstName'],
-        lastName = json['lastName'],
+        firstName = json['first_name'],
+        lastName = json['last_name'],
         name = json['name'],
         initials = json['initials'],
-        avatarObjectKey = json['avatarObjectKey'],
+        avatarObjectKey = json['avatar_object_key'],
         avatarUrl = json['avatarUrl'],
-        backgroundObjectKey = json['backgroundObjectKey'],
-        backgroundUrl = json['backgroundUrl'],
+        backgroundObjectKey = json['background_object_key'],
+        backgroundUrl = json['background_url'],
         locale = json['locale'],
-        timezoneOffset = json['timezoneOffset'],
-        daylightSavings = json['daylightSavings'],
-        phoneNumber = json['phoneNumber'],
+        timezoneOffset = json['timezone_offset'],
+        daylightSavings = json['daylight_savings'],
+        phoneNumber = json['phone_number'],
         user = User.fromJson(json['user']),
         profile = json['profile'],
         jobTitle = json['jobTitle'],
         location = json['location'],
         bio = json['bio'],
-        webUri1 = json['webUri1'],
-        webUri2 = json['webUri2'];
+        webUri1 = json['web_uri_1'],
+        webUri2 = json['web_uri_2'];
 }
 
 class Settings {
@@ -103,15 +103,14 @@ class Settings {
     this.doNotDisturbUntil,
     this.defaultNetworkId,
   );
-
   Settings.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        accountId = json['accountId'],
-        notificationSound = json['notificationSound'],
-        sendDailyEmail = json['sendDailyEmail'],
-        pushRepeatInterval = json['pushRepeatInterval'],
-        doNotDisturbUntil = json['doNotDisturbUntil'],
-        defaultNetworkId = json['defaultNetworkId'];
+        accountId = json['account_id'],
+        notificationSound = json['notification_sound'],
+        sendDailyEmail = json['send_daily_email'],
+        pushRepeatInterval = json['push_repeat_interval'],
+        doNotDisturbUntil = json['do_not_disturb_until'],
+        defaultNetworkId = json['default_network_id'];
 }
 
 class User {
@@ -136,20 +135,20 @@ class User {
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         username = json['username'],
-        isStaff = json['isStaff'],
-        lastLogin = json['lastLogin'],
-        lockedOut = json['lockedOut'],
+        isStaff = json['is_staff'],
+        lastLogin = json['last_login'],
+        lockedOut = json['locked_out'],
         email = json['email'],
-        accountId = json['accountId'];
+        accountId = json['account_id'];
 }
 
 class NetworkAccount {
   String id;
   String name;
   String avatarUrl;
-  Settings settings;
+  NetworkSettings settings;
   SubscriberAccount subscriberAccount;
-  List<String> geofences;
+  // List<String> geofences;
   String parentId;
 
   NetworkAccount(
@@ -158,9 +157,19 @@ class NetworkAccount {
     this.avatarUrl,
     this.settings,
     this.subscriberAccount,
-    this.geofences,
+    // this.geofences,
     this.parentId,
   );
+
+  NetworkAccount.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        avatarUrl = json['avatar_url'],
+        settings = NetworkSettings.fromJson(json['settings']),
+        subscriberAccount =
+            SubscriberAccount.fromJson(json['subscriber_account']),
+        // geofences = json['geofences'],
+        parentId = json['parent_id'];
 }
 
 class NetworkSettings {
@@ -173,7 +182,7 @@ class NetworkSettings {
   bool devicePasscodeRequired;
   bool passportEnabled;
   bool passportLocationTrackingEnabled;
-  List<AccountProfileField> accountProfileFields;
+  // List<AccountProfileField> accountProfileFields;
 
   NetworkSettings(
     this.directoryEnabled,
@@ -185,8 +194,21 @@ class NetworkSettings {
     this.devicePasscodeRequired,
     this.passportEnabled,
     this.passportLocationTrackingEnabled,
-    this.accountProfileFields,
+    // this.accountProfileFields,
   );
+
+  NetworkSettings.fromJson(Map<String, dynamic> json)
+      : directoryEnabled = json['directory_enabled'],
+        shiftsEnabled = json['shifts_enabled'],
+        formsEnabled = json['forms_enabled'],
+        formsFolderId = json['forms_folder_id'],
+        teamsEnabled = json['teams_enabled'],
+        teamMembershipLimit = json['team_membership_limit'],
+        devicePasscodeRequired = json['device_passcode_required'],
+        passportEnabled = json['passport_enabled'],
+        passportLocationTrackingEnabled =
+            json['passport_location_tracking_enabled'];
+  // accountProfileFields = json['accountProfileFields'];
 }
 
 class AccountProfileField {
@@ -203,6 +225,13 @@ class AccountProfileField {
     this.readOnly,
     this.emoji,
   );
+
+  AccountProfileField.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        accountProfileFieldDefault = json['account_profile_field_default'],
+        listId = json['list_id'],
+        readOnly = json['read_only'],
+        emoji = json['emoji'];
 }
 
 class SubscriberAccount {
@@ -217,4 +246,10 @@ class SubscriberAccount {
     this.isShiftsGroupMember,
     this.isShiftsApprover,
   );
+
+  SubscriberAccount.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        isNetworkNotifier = json['is_network_notifier'],
+        isShiftsGroupMember = json['is_shifts_group_member'],
+        isShiftsApprover = json['is_shifts_approver'];
 }

@@ -61,6 +61,8 @@ class AppTheme {
   static final networkSubitem = HexColor("#999999");
   static final networkSwitcherBackground = HexColor("#ededee");
   static final loginBackgroundBoxGray = HexColor("#f4f5f5");
+  static final networkSwitcherGray = HexColor("#f8f8f8");
+  static final conversationListGray = HexColor("#f8f9f9");
 
   static ThemeData get theme {
     return ThemeData.light().copyWith(

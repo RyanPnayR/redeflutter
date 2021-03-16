@@ -7,6 +7,7 @@ import 'package:redeflutter/model/user.dart';
 import 'package:redeflutter/routes.dart';
 import 'package:redeflutter/services/auth_service.dart';
 import 'package:redeflutter/util/responsive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../localization.dart';
 import '../../theme.dart';
@@ -39,15 +40,18 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final submitCallback = () async {
       if (_formKey.currentState.validate()) {
-        String token = await authService.signIn(_userTextEditingController.text,
+        String tokenResp = await authService.signIn(
+            _userTextEditingController.text,
             _passwordTextEditingController.text);
 
+        AppModel am = locator.get<AppModel>();
+        am.aToken = tokenResp;
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("token", am.aToken);
         Scaffold.of(context)
             .showSnackBar(SnackBar(content: Text("Logging you in...")));
-        JwtToken tkn = JwtToken(token);
-        Account account = await authService.getAccountInfo(tkn);
-        appModel.account = account;
 
+        await authService.loadAccountAndNetworks();
         Navigator.pushReplacementNamed(context, Routes.messages);
       }
     };
