@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:redeflutter/model/messaging.dart';
 import 'package:redeflutter/presentation/common/avatar.dart';
+import 'package:redeflutter/theme.dart';
+import 'package:redeflutter/util/date_formatting.dart';
 
 class ConversationListItem extends StatelessWidget {
   Conversation conversation;
@@ -31,8 +33,25 @@ class ConversationListItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: new EdgeInsets.only(right: 13.0),
-                      child: Text(conversation.participantProfile.name),
+                      padding: new EdgeInsets.only(right: 30.0),
+                      child: Row(children: [
+                        Text(
+                          conversation.participantProfile.name,
+                          style: AppTheme.conversationContactText,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 5,
+                          ),
+                          child: Text(
+                            formatDate(
+                              context,
+                              DateTime.parse(conversation.lastMessage.date),
+                            ),
+                            style: AppTheme.conversationDateText,
+                          ),
+                        ),
+                      ]),
                     ),
                   ),
                 ],
@@ -48,6 +67,7 @@ class ConversationListItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         softWrap: false,
+                        style: AppTheme.conversationSubjectText,
                       ),
                     ),
                   ),
@@ -56,9 +76,13 @@ class ConversationListItem extends StatelessWidget {
             ],
           ),
         ),
-        Icon(
-          Icons.arrow_forward_ios,
-          size: 15,
+        Container(
+          margin: EdgeInsets.only(right: 5),
+          child: Icon(
+            Icons.arrow_forward_ios,
+            color: AppTheme.mediumGray,
+            size: 15,
+          ),
         )
       ],
     );

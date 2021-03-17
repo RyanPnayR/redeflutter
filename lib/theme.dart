@@ -85,6 +85,21 @@ class AppTheme {
     );
   }
 
+  static TextStyle get conversationContactText {
+    return TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get conversationDateText {
+    return TextStyle(color: mediumGray, fontSize: 12);
+  }
+
+  static TextStyle get conversationSubjectText {
+    return TextStyle(color: mediumGray, fontSize: 16);
+  }
+
   static TextStyle get signupButtonText {
     return TextStyle(color: redeRed);
   }

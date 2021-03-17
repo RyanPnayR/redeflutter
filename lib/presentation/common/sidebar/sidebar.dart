@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:redeflutter/presentation/common/sidebar/network_switcher.dart';
+import 'package:redeflutter/presentation/common/sidebar/sidebar_menu.dart';
 import 'package:redeflutter/util/login_footer.dart';
 
 import '../../../theme.dart';
@@ -20,8 +21,8 @@ class Sidebar extends StatelessWidget {
         ),
         Expanded(
           flex: 8,
-          child: Container(
-            color: AppTheme.drawerBackground,
+          child: Column(
+            children: [SidebarMenu()],
           ),
         ),
       ],
