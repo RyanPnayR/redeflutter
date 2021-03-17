@@ -6,4 +6,5 @@ class AppModel {
   List<NetworkAccount> networks;
   NetworkAccount selectedNetwork;
   String aToken = '';
+  bool loading = false;
 }

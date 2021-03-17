@@ -26,17 +26,25 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   void initState() {
     super.initState();
-    authService
-        .loadAccountAndNetworks()
-        .then((value) => {print('finished loading')});
+    appModel.loading = true;
+
+    authService.loadAccountAndNetworks().then((value) => {
+          setState(
+            () {
+              appModel.loading = false;
+            },
+          ),
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Responsive(
-      desktop: DesktopConversationScreen(),
-      mobile: MobileConversationScreen(),
-      tablet: MobileConversationScreen(),
-    );
+    return appModel.loading
+        ? Text('loading')
+        : Responsive(
+            desktop: DesktopConversationScreen(),
+            mobile: MobileConversationScreen(),
+            tablet: MobileConversationScreen(),
+          );
   }
 }
