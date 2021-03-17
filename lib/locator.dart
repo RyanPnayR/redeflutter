@@ -14,10 +14,11 @@ void setupLocator() {
   locator.registerSingleton<AppModel>(AppModel());
 
   BaseOptions options = new BaseOptions(
-    baseUrl: env['baseUrl'],
+    baseUrl: env['API_URL'],
   );
   Dio dio = new Dio(options);
-  dio.interceptors.add(InterceptorsWrapper(onRequest: (Options options) async {
+  dio.interceptors.add(InterceptorsWrapper(onRequest:
+      (RequestOptions options, RequestInterceptorHandler handler) async {
     // to prevent other request enter this interceptor.
     dio.interceptors.requestLock.lock();
     // We use a new Dio(to avoid dead lock) instance to request token.
@@ -26,9 +27,8 @@ void setupLocator() {
     if (token != null && token != "") {
       options.headers["Authorization"] = "Bearer $token";
     }
-    options.headers["Access-Control-Allow-Origin"] = "*";
     dio.interceptors.requestLock.unlock();
-    return options; //continue
+    handler.next(options); //continue
   }));
 
   locator.registerSingleton<Dio>(dio);

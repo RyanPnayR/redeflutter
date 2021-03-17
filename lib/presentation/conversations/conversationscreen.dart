@@ -28,13 +28,16 @@ class _ConversationScreenState extends State<ConversationScreen> {
     super.initState();
     appModel.loading = true;
 
-    authService.loadAccountAndNetworks().then((value) => {
-          setState(
-            () {
-              appModel.loading = false;
-            },
-          ),
-        });
+    authService
+        .loadAccountAndNetworks()
+        .then((value) => {
+              setState(
+                () {
+                  appModel.loading = false;
+                },
+              ),
+            })
+        .onError((error, stackTrace) => {appModel.logout(context)});
   }
 
   @override

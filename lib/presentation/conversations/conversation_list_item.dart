@@ -22,20 +22,40 @@ class ConversationListItem extends StatelessWidget {
             ),
           ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text(conversation.participantProfile.name)],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text(conversation.lastMessage.subject)],
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: new EdgeInsets.only(right: 13.0),
+                      child: Text(conversation.participantProfile.name),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: new EdgeInsets.only(right: 13.0),
+                      child: Text(
+                        conversation.lastMessage.subject,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        softWrap: false,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        Spacer(),
         Icon(
           Icons.arrow_forward_ios,
           size: 15,

@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/messaging.dart';
@@ -30,8 +33,12 @@ class _ConversationListState extends State<ConversationList> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final response = await messagingService.getNetworks(
-          page: pageKey + 1, pageSize: _pageSize);
+      final response = await messagingService
+          .getNetworks(page: pageKey + 1, pageSize: _pageSize)
+          .onError((error, stackTrace) {
+        appModel.logout(context);
+        return;
+      });
       final newItems =
           messagingService.conversationResponseToConversations(response);
       final isLastPage = response.data['next'] == null;
@@ -51,11 +58,16 @@ class _ConversationListState extends State<ConversationList> {
       // Don't worry about displaying progress or error indicators on screen; the
       // package takes care of that. If you want to customize them, use the
       // [PagedChildBuilderDelegate] properties.
-      PagedListView<int, Conversation>(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<Conversation>(
-          itemBuilder: (context, item, index) => ConversationListItem(
-            conversation: item,
+      RefreshIndicator(
+        onRefresh: () => Future.sync(
+          () => _pagingController.refresh(),
+        ),
+        child: PagedListView<int, Conversation>(
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Conversation>(
+            itemBuilder: (context, item, index) => ConversationListItem(
+              conversation: item,
+            ),
           ),
         ),
       );
