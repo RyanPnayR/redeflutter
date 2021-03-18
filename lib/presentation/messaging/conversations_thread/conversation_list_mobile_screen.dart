@@ -7,9 +7,9 @@ import 'package:redeflutter/presentation/common/sidebar/sidebar.dart';
 import 'package:redeflutter/presentation/conversations/conversation_list.dart';
 import 'package:redeflutter/util/login_footer.dart';
 
-import '../../theme.dart';
+import '../../../theme.dart';
 
-class MobileConversationScreen extends StatelessWidget {
+class MobileConversationListScreen extends StatelessWidget {
   GlobalKey<ScaffoldState> _mobileConversationKey = GlobalKey();
   var appModel = locator.get<AppModel>();
 

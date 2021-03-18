@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/messaging.dart';
-import 'package:redeflutter/presentation/conversations/conversation_list_item.dart';
-import 'package:redeflutter/presentation/conversations/conversation_thread.dart';
+import 'package:redeflutter/presentation/messaging/conversations_thread/conversation_list_item.dart';
+import 'package:redeflutter/presentation/messaging/conversation/conversation_screen.dart';
 import 'package:redeflutter/services/messaging_service.dart';
 import 'package:redeflutter/data/app_model.dart';
 
@@ -22,7 +20,7 @@ class _ConversationListState extends State<ConversationList> {
   var messagingService = locator<MessagingService>();
   var appModel = locator<AppModel>();
   final PagingController<int, Conversation> _pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   @override
   void initState() {
@@ -35,7 +33,7 @@ class _ConversationListState extends State<ConversationList> {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final response = await messagingService
-          .getNetworks(page: pageKey + 1, pageSize: _pageSize)
+          .getNetworks(page: pageKey, pageSize: _pageSize)
           .onError((error, stackTrace) {
         appModel.logout(context);
         return;
@@ -68,9 +66,10 @@ class _ConversationListState extends State<ConversationList> {
           builderDelegate: PagedChildBuilderDelegate<Conversation>(
             itemBuilder: (context, item, index) => InkWell(
               onTap: () {
+                appModel.selectedConversation = item;
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ConversationThread(),
+                    builder: (context) => ConversationScreen(),
                   ),
                 );
               },

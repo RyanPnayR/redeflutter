@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:redeflutter/locator.dart';
+import 'package:redeflutter/model/messaging.dart';
 import 'package:redeflutter/model/user.dart';
 import 'package:redeflutter/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,7 @@ class AppModel {
   NetworkAccount selectedNetwork;
   String aToken = '';
   bool loading = false;
+  Conversation selectedConversation;
 
   logout(BuildContext context) {
     locator.get<AppModel>().aToken = "";

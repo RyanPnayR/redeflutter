@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:redeflutter/presentation/common/sidebar/sidebar.dart';
 import 'package:redeflutter/util/login_footer.dart';
 
-import '../../theme.dart';
+import '../../../theme.dart';
 
-class DesktopConversationScreen extends StatelessWidget {
+class DesktopConversationListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
