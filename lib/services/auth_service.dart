@@ -36,9 +36,10 @@ class AuthService {
   Future<void> loadAccountAndNetworks() async {
     Account account = await this.getAccountInfo();
     appModel.account = account;
-
-    List<NetworkAccount> networks = await this.getNetworks();
-    appModel.networks = networks;
-    appModel.selectedNetwork = networks[0];
+    if (appModel.selectedNetwork == null) {
+      List<NetworkAccount> networks = await this.getNetworks();
+      appModel.networks = networks;
+      appModel.selectedNetwork = networks[0];
+    }
   }
 }

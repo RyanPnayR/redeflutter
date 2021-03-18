@@ -6,6 +6,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/messaging.dart';
 import 'package:redeflutter/presentation/conversations/conversation_list_item.dart';
+import 'package:redeflutter/presentation/conversations/conversation_thread.dart';
 import 'package:redeflutter/services/messaging_service.dart';
 import 'package:redeflutter/data/app_model.dart';
 
@@ -65,8 +66,17 @@ class _ConversationListState extends State<ConversationList> {
         child: PagedListView<int, Conversation>(
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<Conversation>(
-            itemBuilder: (context, item, index) => ConversationListItem(
-              conversation: item,
+            itemBuilder: (context, item, index) => InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ConversationThread(),
+                  ),
+                );
+              },
+              child: ConversationListItem(
+                conversation: item,
+              ),
             ),
           ),
         ),

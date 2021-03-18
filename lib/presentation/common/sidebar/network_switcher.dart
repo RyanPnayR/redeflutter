@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/presentation/common/network_avatar.dart';
+import 'package:redeflutter/routes.dart';
 import 'package:redeflutter/theme.dart';
 
 class NetworkSwitcher extends StatefulWidget {
@@ -24,6 +25,8 @@ class _NetworkSwitcherState extends State<NetworkSwitcher> {
               onTap: () {
                 setState(() {
                   appModel.selectedNetwork = network;
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      Routes.messages, (route) => false);
                 });
               },
               child: Opacity(

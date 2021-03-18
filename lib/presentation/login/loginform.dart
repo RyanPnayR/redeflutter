@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
@@ -108,50 +109,59 @@ class _LoginFormState extends State<LoginForm> {
         Text(RedeappLocalizations.of(context).rememberUsername),
       ],
     );
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                color: Colors.grey,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-            ),
-            child: Column(
-              children: [
-                _userTextField,
-                Divider(
-                  color: Colors.black,
-                  height: 2,
+    return RawKeyboardListener(
+      onKey: (event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+          submitCallback();
+        }
+      },
+      focusNode: FocusNode(),
+      child: Form(
+        autovalidateMode: AutovalidateMode.always,
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(
+                  color: Colors.grey,
                 ),
-                _passwordTextField,
-              ],
-            ),
-          ),
-          Responsive.isMobile(context)
-              ? _rememberUsername
-              : Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          RedeappLocalizations.of(context).forgotPassword,
-                          style: AppTheme.forgotPasswordButtonText,
-                        ),
-                      ),
-                    ],
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              child: Column(
+                children: [
+                  _userTextField,
+                  Divider(
+                    color: Colors.black,
+                    height: 2,
                   ),
-                ),
-          submitButton
-        ],
+                  _passwordTextField,
+                ],
+              ),
+            ),
+            Responsive.isMobile(context)
+                ? _rememberUsername
+                : Container(
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            RedeappLocalizations.of(context).forgotPassword,
+                            style: AppTheme.forgotPasswordButtonText,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+            submitButton
+          ],
+        ),
       ),
     );
   }

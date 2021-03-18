@@ -33,11 +33,17 @@ class ConversationListItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: new EdgeInsets.only(right: 30.0),
+                      padding: new EdgeInsets.only(right: 15.0),
                       child: Row(children: [
-                        Text(
-                          conversation.participantProfile.name,
-                          style: AppTheme.conversationContactText,
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: Container(
+                            child: Text(
+                              conversation.participantProfile.name,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTheme.conversationContactText,
+                            ),
+                          ),
                         ),
                         Container(
                           margin: EdgeInsets.only(
