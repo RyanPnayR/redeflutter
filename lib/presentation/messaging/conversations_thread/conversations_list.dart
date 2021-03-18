@@ -33,7 +33,7 @@ class _ConversationListState extends State<ConversationList> {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final response = await messagingService
-          .getNetworks(page: pageKey, pageSize: _pageSize)
+          .getConversations(page: pageKey, pageSize: _pageSize)
           .onError((error, stackTrace) {
         appModel.logout(context);
         return;

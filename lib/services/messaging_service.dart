@@ -8,7 +8,7 @@ class MessagingService {
   var dio = locator.get<Dio>();
   var appModel = locator<AppModel>();
 
-  Future<Response> getNetworks({int page = 1, int pageSize}) async {
+  Future<Response> getConversations({int page = 1, int pageSize}) async {
     List<String> networkIds = [
       appModel.selectedNetwork.id,
       appModel.selectedNetwork.parentId
@@ -26,5 +26,25 @@ class MessagingService {
       conversations.add(Conversation.fromJson(conversation));
     });
     return conversations;
+  }
+
+  Future<Response> getMessages(
+      {int page = 1, int pageSize, String conversationId = ""}) async {
+    if (conversationId == "") {
+      conversationId = appModel.selectedConversation.id;
+    }
+
+    Response resp = await dio.get(MessagingPaths.getMessages(page,
+        pageSize: pageSize, conversationId: conversationId));
+    return resp;
+  }
+
+  List<Message> messageResponseToConversations(Response resp) {
+    List<Message> messages = [];
+    var results = resp.data['results'];
+    results.forEach((message) {
+      messages.add(Message.fromJson(message));
+    });
+    return messages;
   }
 }

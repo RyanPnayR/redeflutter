@@ -4,7 +4,8 @@ import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/presentation/common/avatar.dart';
 import 'package:redeflutter/presentation/common/sidebar/sidebar.dart';
-import 'package:redeflutter/presentation/conversations_thread/conversations_list.dart';
+import 'package:redeflutter/presentation/common/title_bar.dart';
+import 'package:redeflutter/presentation/messaging/conversations_thread/conversations_list.dart';
 import '../../../theme.dart';
 
 class MobileConversationListScreen extends StatelessWidget {
@@ -23,30 +24,17 @@ class MobileConversationListScreen extends StatelessWidget {
             child: Sidebar(),
           ),
         ),
-        appBar: AppBar(
-          backgroundColor: AppTheme.lightGray,
-          elevation: 0,
-          centerTitle: true,
+        appBar: getTitleBar(
+          title: 'Messages',
           automaticallyImplyLeading: false,
-          title: Row(
-            children: [
-              InkWell(
-                child: Avatar(
-                  size: 40,
-                  url: NetworkImage(appModel.account.avatarUrl),
-                ),
-                onTap: () {
-                  _mobileConversationKey.currentState.openDrawer();
-                },
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: Text(
-                  'Messages',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
+          titlebarFrontButton: InkWell(
+            child: Avatar(
+              size: 40,
+              url: NetworkImage(appModel.account.avatarUrl),
+            ),
+            onTap: () {
+              _mobileConversationKey.currentState.openDrawer();
+            },
           ),
         ),
         body: Row(
