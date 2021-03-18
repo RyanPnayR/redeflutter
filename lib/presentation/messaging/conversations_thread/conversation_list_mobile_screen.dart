@@ -4,9 +4,7 @@ import 'package:redeflutter/data/app_model.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/presentation/common/avatar.dart';
 import 'package:redeflutter/presentation/common/sidebar/sidebar.dart';
-import 'package:redeflutter/presentation/conversations/conversation_list.dart';
-import 'package:redeflutter/util/login_footer.dart';
-
+import 'package:redeflutter/presentation/conversations_thread/conversations_list.dart';
 import '../../../theme.dart';
 
 class MobileConversationListScreen extends StatelessWidget {
