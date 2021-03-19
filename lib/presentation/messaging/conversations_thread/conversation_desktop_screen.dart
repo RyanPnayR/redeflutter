@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:redeflutter/presentation/common/sidebar/sidebar.dart';
+import 'package:redeflutter/presentation/messaging/conversation/message_thread.dart';
+import 'package:redeflutter/presentation/messaging/conversations_thread/conversations_list.dart';
 import 'package:redeflutter/util/login_footer.dart';
 
 import '../../../theme.dart';
@@ -49,12 +51,14 @@ class DesktopConversationListScreen extends StatelessWidget {
               flex: _size.width > 1340 ? 4 : 6,
               child: Container(
                 color: AppTheme.conversationListGray,
+                child: ConversationList(),
               ),
             ),
             Expanded(
               flex: _size.width > 1340 ? 6 : 8,
               child: Container(
-                color: AppTheme.drawerBackground,
+                color: Colors.white,
+                child: MessageThread(),
               ),
             ),
           ],

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/messaging.dart';

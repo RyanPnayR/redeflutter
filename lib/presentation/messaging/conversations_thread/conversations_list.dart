@@ -41,6 +41,11 @@ class _ConversationListState extends State<ConversationList> {
       final newItems =
           messagingService.conversationResponseToConversations(response);
       final isLastPage = response.data['next'] == null;
+      if (appModel.selectedConversation == null) {
+        setState(() {
+          appModel.selectedConversation = newItems[0];
+        });
+      }
       if (isLastPage) {
         _pagingController.appendLastPage(newItems);
       } else {

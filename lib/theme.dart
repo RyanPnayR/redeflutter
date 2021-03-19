@@ -54,6 +54,7 @@ class AppTheme {
   static final dividerColor = HexColor("#767676");
   static final blueFont = HexColor("#7491BC");
   static final whiteGrey = HexColor("#cecfcf");
+  static final messageEditorGrey = HexColor("#ecf0f1");
   static final purple = HexColor("#9564b8");
   static final emergencyYellow = HexColor("#f0da68");
   static final green = HexColor("#64b873");
@@ -68,6 +69,7 @@ class AppTheme {
     return ThemeData.light().copyWith(
       primaryColor: Colors.black,
       accentColor: Colors.black,
+      canvasColor: Colors.white,
     );
   }
 
@@ -126,6 +128,22 @@ class AppTheme {
   static TextStyle get signupButtonLinkText {
     return TextStyle(
       color: black,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle get sidebarMenuLink {
+    return TextStyle(
+      color: mediumGray,
+      fontSize: 16,
+      fontFamily: fontFamilyEdmondsansMedium,
+    );
+  }
+
+  static TextStyle get sidebarProfileName {
+    return TextStyle(
+      color: black,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
     );
   }

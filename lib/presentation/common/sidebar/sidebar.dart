@@ -21,8 +21,15 @@ class Sidebar extends StatelessWidget {
         ),
         Expanded(
           flex: 8,
-          child: Column(
-            children: [SidebarMenu()],
+          child: Container(
+            color: Colors.white,
+            padding: EdgeInsets.only(
+              top: 20,
+              left: 15,
+            ),
+            child: Column(
+              children: [SidebarMenu()],
+            ),
           ),
         ),
       ],

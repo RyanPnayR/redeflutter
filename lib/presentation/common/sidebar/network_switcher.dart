@@ -43,15 +43,18 @@ class _NetworkSwitcherState extends State<NetworkSwitcher> {
   @override
   Widget build(BuildContext context) {
     var appModel = locator.get<AppModel>();
-    return ListView(
-      children: [
-        ...getNetworkIcons(appModel),
-        Icon(
-          Icons.settings,
-          size: 40,
-          color: AppTheme.mediumGray,
-        )
-      ],
+    return Container(
+      color: AppTheme.lightGray,
+      child: ListView(
+        children: [
+          ...getNetworkIcons(appModel),
+          Icon(
+            Icons.settings,
+            size: 40,
+            color: AppTheme.mediumGray,
+          )
+        ],
+      ),
     );
   }
 }
