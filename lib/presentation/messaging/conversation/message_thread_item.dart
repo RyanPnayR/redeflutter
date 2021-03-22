@@ -8,6 +8,8 @@ import 'package:redeflutter/model/messaging.dart';
 import 'package:redeflutter/presentation/common/avatar.dart';
 import 'package:redeflutter/theme.dart';
 import 'package:redeflutter/util/date_formatting.dart';
+import 'package:html/parser.dart' as htmlparser;
+import 'package:html/dom.dart' as dom;
 
 class MessageThreadItem extends StatelessWidget {
   final Message message;
@@ -30,13 +32,15 @@ class MessageThreadItem extends StatelessWidget {
 
     stripped = stripped.replaceAll("<li>", "&#8226; ");
     stripped = stripped.replaceAll("</li>", "<br>");
-    return "<div>$stripped</div>";
+    return stripped;
   }
 
   Widget getMessageWidget() {
+    String body = getMessageBody();
+
     return Html(
       shrinkWrap: true,
-      data: getMessageBody(),
+      data: "<div>$body</div>",
       blacklistedElements: ["video", "img"],
       style: isMessageSent()
           ? {"div": Style(color: Colors.white)}
@@ -89,6 +93,8 @@ class MessageThreadItem extends StatelessWidget {
 
   Container messageContainer(
       BuildContext context, Color color, EdgeInsets margin) {
+    String body = getMessageBody();
+    dom.Document document = htmlparser.parse(body);
     return Container(
       margin: margin,
       constraints: BoxConstraints(
@@ -102,13 +108,17 @@ class MessageThreadItem extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          getMessageWidget(),
+          if (document.documentElement.text != null &&
+              document.documentElement.text.length != 0)
+            getMessageWidget(),
           SizedBox(
             width: 50,
             height: 50,
             child: Container(
+              margin: EdgeInsets.all(10),
               color: AppTheme.blueFont,
             ),
           )
