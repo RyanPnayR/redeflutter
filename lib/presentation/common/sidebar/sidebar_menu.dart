@@ -66,6 +66,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
     return subItems
         .map(
           (item) => Container(
+            color: Colors.white,
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Expanded(
               child: InkWell(
@@ -101,6 +102,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 url: NetworkImage(appModel.account.avatarUrl),
               ),
               Container(
+                color: Colors.white,
                 margin: EdgeInsets.only(left: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

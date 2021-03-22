@@ -30,7 +30,7 @@ class RedeappLocalizations {
       "i_forgot": "I forgot my ...",
       "remember_username": "Remember Username",
       "used_redeapp": "I've used Rede e App before",
-      "new_redeapp": "I've new to Rede e App",
+      "new_redeapp": "I'm new to Rede e App",
       "log_out": "Log out",
       "log_in": "SIGN IN",
       "hello_name": "Hello {name}!",

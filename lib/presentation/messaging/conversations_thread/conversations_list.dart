@@ -35,7 +35,7 @@ class _ConversationListState extends State<ConversationList> {
       final response = await messagingService
           .getConversations(page: pageKey, pageSize: _pageSize)
           .onError((error, stackTrace) {
-        appModel.logout(context);
+        // appModel.logout(context);
         return;
       });
       final newItems =

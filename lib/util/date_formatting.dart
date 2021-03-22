@@ -52,3 +52,9 @@ String formatCalendarDate(BuildContext context, DateTime date) {
     return "";
   }
 }
+
+bool isSameDate(DateTime other, DateTime date) {
+  return date.year == other.year &&
+      date.month == other.month &&
+      date.day == other.day;
+}

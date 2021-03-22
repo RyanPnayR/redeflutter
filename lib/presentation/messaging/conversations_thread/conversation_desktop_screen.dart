@@ -45,7 +45,10 @@ class DesktopConversationListScreen extends StatelessWidget {
             // Now there is no error if our width is less then 1340
             Expanded(
               flex: _size.width > 1340 ? 3 : 5,
-              child: Sidebar(),
+              child: Container(
+                color: Colors.white,
+                child: Sidebar(),
+              ),
             ),
             Expanded(
               flex: _size.width > 1340 ? 4 : 6,

@@ -98,6 +98,10 @@ class AppTheme {
     return TextStyle(color: mediumGray, fontSize: 12);
   }
 
+  static TextStyle get messageThreadDateText {
+    return TextStyle(color: mediumGray, fontSize: 10);
+  }
+
   static TextStyle get conversationSubjectText {
     return TextStyle(color: mediumGray, fontSize: 16);
   }

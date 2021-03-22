@@ -6,6 +6,7 @@ import 'package:flutter_quill/widgets/toolbar.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:redeflutter/locator.dart';
 import 'package:redeflutter/model/messaging.dart';
+import 'package:redeflutter/presentation/common/avatar.dart';
 import 'package:redeflutter/presentation/messaging/conversation/message_thread_item.dart';
 import 'package:redeflutter/presentation/messaging/conversations_thread/conversation_list_item.dart';
 import 'package:redeflutter/presentation/messaging/conversation/conversation_screen.dart';
@@ -80,6 +81,9 @@ class _MessageThreadState extends State<MessageThread> {
                     onTap: () {},
                     child: MessageThreadItem(
                       message: item,
+                      prevMessage: index < _pagingController.itemList.length - 1
+                          ? _pagingController.itemList[index + 1]
+                          : null,
                     ),
                   ),
                 ),
